@@ -16,6 +16,7 @@ define 'gwt-mmvp' do
                :google_guice
 
   package(:jar).include("#{_(:source, :main, :java)}/*")
+  package(:javadoc)
 
   iml.add_jruby_facet
 end
