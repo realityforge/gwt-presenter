@@ -1,3 +1,6 @@
+## 0.5:
+* Correct the group from org.realityforge.gwt.ga to org.realityforge.gwt.mmvp
+
 ## 0.4:
 
 * Introduce simple Presenter and View interfaces.
