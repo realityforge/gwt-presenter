@@ -1,5 +1,4 @@
 require 'buildr/git_auto_version'
-require 'buildr/top_level_generate_dir'
 
 desc 'MMVP: Enhance the activities and places library'
 define 'gwt-mmvp' do
