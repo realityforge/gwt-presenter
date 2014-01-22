@@ -1,6 +1,7 @@
 package net.customware.gwt.presenter.client;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.web.bindery.event.shared.EventBus;
 
 public class PresenterChangedEvent
   extends GwtEvent<PresenterChangedHandler>

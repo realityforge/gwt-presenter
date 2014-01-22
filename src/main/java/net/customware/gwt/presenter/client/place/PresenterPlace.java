@@ -1,7 +1,7 @@
 package net.customware.gwt.presenter.client.place;
 
-import com.google.gwt.event.shared.HandlerRegistration;
-import net.customware.gwt.presenter.client.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 import net.customware.gwt.presenter.client.Presenter;
 import net.customware.gwt.presenter.client.PresenterChangedEvent;
 import net.customware.gwt.presenter.client.PresenterChangedHandler;

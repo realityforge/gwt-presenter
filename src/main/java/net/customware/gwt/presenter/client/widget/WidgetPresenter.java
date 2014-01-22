@@ -1,8 +1,8 @@
 package net.customware.gwt.presenter.client.widget;
 
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.event.shared.EventBus;
 import net.customware.gwt.presenter.client.BasicPresenter;
-import net.customware.gwt.presenter.client.EventBus;
 
 /**
  * Abstract super-class for {@link BasicPresenter}s that work with GWT

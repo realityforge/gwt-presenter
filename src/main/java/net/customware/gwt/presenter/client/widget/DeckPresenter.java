@@ -1,7 +1,7 @@
 package net.customware.gwt.presenter.client.widget;
 
 import com.google.gwt.user.client.ui.DeckPanel;
-import net.customware.gwt.presenter.client.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 
 /**
  * A simple implementation of {@link WidgetContainerPresenter} that uses a

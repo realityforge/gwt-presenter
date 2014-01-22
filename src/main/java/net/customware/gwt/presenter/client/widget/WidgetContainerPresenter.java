@@ -1,7 +1,7 @@
 package net.customware.gwt.presenter.client.widget;
 
+import com.google.web.bindery.event.shared.EventBus;
 import java.util.List;
-import net.customware.gwt.presenter.client.EventBus;
 import net.customware.gwt.presenter.client.PresenterRevealedEvent;
 import net.customware.gwt.presenter.client.PresenterRevealedHandler;
 

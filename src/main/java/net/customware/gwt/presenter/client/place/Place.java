@@ -1,7 +1,7 @@
 package net.customware.gwt.presenter.client.place;
 
-import com.google.gwt.event.shared.HandlerRegistration;
-import net.customware.gwt.presenter.client.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
  * A place represents a particular 'bookmark' or location inside the
@@ -130,7 +130,7 @@ public abstract class Place
 
   /**
    * This method is called when it should deregister any event handlers that were registered with the
-   * {@link #addHandlers(net.customware.gwt.presenter.client.EventBus)} method.
+   * {@link #addHandlers(EventBus)} method.
    *
    * @param eventBus The event bus.
    */

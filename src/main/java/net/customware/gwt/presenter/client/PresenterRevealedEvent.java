@@ -1,6 +1,7 @@
 package net.customware.gwt.presenter.client;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.web.bindery.event.shared.EventBus;
 
 /**
  * Presenters can send this event to the {@link EventBus} to notify other

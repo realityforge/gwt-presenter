@@ -1,6 +1,7 @@
 package net.customware.gwt.presenter.client;
 
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 import java.util.List;
 
 public abstract class BasicPresenter<D extends Display>

@@ -1,7 +1,7 @@
 package net.customware.gwt.presenter.client.place;
 
 import com.google.gwt.event.shared.GwtEvent;
-import net.customware.gwt.presenter.client.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 
 /**
  * This event is triggered when any {@link Place} has changed state. It may or
