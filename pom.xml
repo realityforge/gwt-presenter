@@ -39,7 +39,7 @@
 
 	<properties>
 		<gwt.version>2.5.1</gwt.version>
-		<gin.version>1.0</gin.version>
+		<gin.version>2.1.2</gin.version>
 		<mavenExecutorId>forked-path</mavenExecutorId>
 	</properties>
 
