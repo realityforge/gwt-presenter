@@ -1,7 +1,7 @@
 require 'buildr/git_auto_version'
 
-desc 'MMVP: Enhance the activities and places library'
-define 'gwt-mmvp' do
+desc 'This library provides a "presenter" API implementation for GWT.'
+define 'gwt-presenter' do
   project.group = 'org.realityforge.gwt.mmvp'
   compile.options.source = '1.7'
   compile.options.target = '1.7'
@@ -12,6 +12,8 @@ define 'gwt-mmvp' do
   pom.add_apache2_license
   pom.add_github_project('realityforge/gwt-mmvp')
   pom.add_developer('realityforge', 'Peter Donald')
+  pom.add_developer('randomeizer', 'David Peterson', 'david@randombits.org', ['Original Developer'])
+
   pom.provided_dependencies.concat [:javax_annotation, :javax_inject]
 
   compile.with :javax_annotation,
