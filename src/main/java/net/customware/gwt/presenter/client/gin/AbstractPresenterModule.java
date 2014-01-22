@@ -10,12 +10,6 @@ import static com.google.inject.name.Names.named;
 public abstract class AbstractPresenterModule
   extends AbstractGinModule
 {
-
-  public AbstractPresenterModule()
-  {
-    super();
-  }
-
   /**
    * Convenience method for binding a presenter as well as it's display.
    *
