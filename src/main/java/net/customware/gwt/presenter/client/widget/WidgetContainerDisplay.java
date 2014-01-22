@@ -1,6 +1,3 @@
-/**
- *
- */
 package net.customware.gwt.presenter.client.widget;
 
 import com.google.gwt.user.client.ui.Widget;
