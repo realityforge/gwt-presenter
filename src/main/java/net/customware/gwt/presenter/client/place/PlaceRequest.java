@@ -17,9 +17,7 @@ import java.util.Set;
  */
 public class PlaceRequest
 {
-
   private final String name;
-
   private final Map<String, String> params;
 
   public PlaceRequest( String name )

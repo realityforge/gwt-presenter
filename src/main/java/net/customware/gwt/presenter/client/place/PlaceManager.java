@@ -8,7 +8,6 @@ package net.customware.gwt.presenter.client.place;
  */
 public interface PlaceManager
 {
-
   /**
    * Fires an event for the current place.
    *

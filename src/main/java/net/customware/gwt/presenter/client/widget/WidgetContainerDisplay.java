@@ -13,11 +13,9 @@ import com.google.gwt.user.client.ui.Widget;
 public interface WidgetContainerDisplay
   extends WidgetDisplay
 {
-
   void addWidget( Widget widget );
 
   void removeWidget( Widget widget );
 
   void showWidget( Widget widget );
-
 }
