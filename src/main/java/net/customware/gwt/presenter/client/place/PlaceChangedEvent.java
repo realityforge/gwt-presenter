@@ -9,37 +9,47 @@ import net.customware.gwt.presenter.client.EventBus;
  *
  * @author David Peterson
  */
-public class PlaceChangedEvent extends GwtEvent<PlaceChangedHandler> {
+public class PlaceChangedEvent
+  extends GwtEvent<PlaceChangedHandler>
+{
 
-    private static Type<PlaceChangedHandler> TYPE;
+  private static Type<PlaceChangedHandler> TYPE;
 
-    public static Type<PlaceChangedHandler> getType() {
-        if ( TYPE == null )
-            TYPE = new Type<PlaceChangedHandler>();
-        return TYPE;
+  public static Type<PlaceChangedHandler> getType()
+  {
+    if ( TYPE == null )
+    {
+      TYPE = new Type<PlaceChangedHandler>();
     }
+    return TYPE;
+  }
 
-    public static void fire( EventBus eventBus, Place place ) {
-        eventBus.fireEvent( new PlaceChangedEvent( place ) );
-    }
+  public static void fire( EventBus eventBus, Place place )
+  {
+    eventBus.fireEvent( new PlaceChangedEvent( place ) );
+  }
 
-    private final Place place;
+  private final Place place;
 
-    public PlaceChangedEvent( Place place ) {
-        this.place = place;
-    }
+  public PlaceChangedEvent( Place place )
+  {
+    this.place = place;
+  }
 
-    @Override
-    protected void dispatch( PlaceChangedHandler handler ) {
-        handler.onPlaceChanged( this );
-    }
+  @Override
+  protected void dispatch( PlaceChangedHandler handler )
+  {
+    handler.onPlaceChanged( this );
+  }
 
-    @Override
-    public com.google.gwt.event.shared.GwtEvent.Type<PlaceChangedHandler> getAssociatedType() {
-        return getType();
-    }
+  @Override
+  public com.google.gwt.event.shared.GwtEvent.Type<PlaceChangedHandler> getAssociatedType()
+  {
+    return getType();
+  }
 
-    public Place getPlace() {
-        return place;
-    }
+  public Place getPlace()
+  {
+    return place;
+  }
 }

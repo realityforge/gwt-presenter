@@ -8,35 +8,43 @@ import net.customware.gwt.presenter.client.place.TokenFormatter;
 /**
  * Configures the basic classes for presenter.
  */
-public class PresenterSetupModule extends AbstractGinModule {
+public class PresenterSetupModule
+  extends AbstractGinModule
+{
 
-    private final Class<? extends PlaceManager> placeManagerClass;
+  private final Class<? extends PlaceManager> placeManagerClass;
 
-    private final Class<? extends TokenFormatter> tokenFormatterClass;
+  private final Class<? extends TokenFormatter> tokenFormatterClass;
 
-    public PresenterSetupModule( Class<? extends PlaceManager> placeManagerClass ) {
-        this( placeManagerClass, ParameterTokenFormatter.class );
-    }
+  public PresenterSetupModule( Class<? extends PlaceManager> placeManagerClass )
+  {
+    this( placeManagerClass, ParameterTokenFormatter.class );
+  }
 
-    public PresenterSetupModule( Class<? extends PlaceManager> placeManagerClass, Class<? extends TokenFormatter> tokenFormatterClass ) {
-        this.placeManagerClass = placeManagerClass;
-        this.tokenFormatterClass = tokenFormatterClass;
-    }
+  public PresenterSetupModule( Class<? extends PlaceManager> placeManagerClass,
+                               Class<? extends TokenFormatter> tokenFormatterClass )
+  {
+    this.placeManagerClass = placeManagerClass;
+    this.tokenFormatterClass = tokenFormatterClass;
+  }
 
-    @Override
-    protected void configure() {
-        bind( TokenFormatter.class).to( tokenFormatterClass );
-        
-        bind( PlaceManager.class ).to( placeManagerClass );
-        bind( placeManagerClass ).asEagerSingleton();
-    }
+  @Override
+  protected void configure()
+  {
+    bind( TokenFormatter.class ).to( tokenFormatterClass );
 
-    @Override
-    public boolean equals( Object object ) {
-        return object instanceof PresenterSetupModule;
-    }
+    bind( PlaceManager.class ).to( placeManagerClass );
+    bind( placeManagerClass ).asEagerSingleton();
+  }
 
-    public int hashCode() {
-        return 19;
-    }
+  @Override
+  public boolean equals( Object object )
+  {
+    return object instanceof PresenterSetupModule;
+  }
+
+  public int hashCode()
+  {
+    return 19;
+  }
 }

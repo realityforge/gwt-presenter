@@ -1,66 +1,65 @@
 package net.customware.gwt.presenter.client.place;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class ParameterTokenFormatterTest {
+public class ParameterTokenFormatterTest
+{
+  @Test
+  public void renderParameterValue()
+  {
+    assertPlaceIsRenderedAs( new PlaceRequest( "test" ).with( "name", "value" ), "test;name=value" );
+  }
 
-    @Test
-    public void renderParameterValue() {
+  @Test
+  public void renderEscapedParameterValue()
+  {
+    assertPlaceIsRenderedAs( new PlaceRequest( "test" ).with( "name", "value;value" ), "test;name=value;;value" );
+  }
 
-        assertPlaceIsRenderedAs(new PlaceRequest("test").with("name", "value"), "test;name=value");
-    }
+  @Test
+  public void renderNoParameterValue()
+  {
+    assertPlaceIsRenderedAs( new PlaceRequest( "test" ), "test" );
+  }
 
-    @Test
-    public void renderEscapedParameterValue() {
+  @Test
+  public void renderEmptyParameterValue()
+  {
+    assertPlaceIsRenderedAs( new PlaceRequest( "test" ).with( "Description", "" ).with( "SomethingElse", "hello" ),
+                             "test;Description=;SomethingElse=hello" );
+  }
 
-        assertPlaceIsRenderedAs(new PlaceRequest("test").with("name", "value;value"), "test;name=value;;value");
-    }
+  @Test
+  public void parseParameterValue()
+  {
+    assertTokenIsParsedAs( "test;name=value", new PlaceRequest( "test" ).with( "name", "value" ) );
+  }
 
-    @Test
-    public void renderNoParameterValue() {
-        
-        assertPlaceIsRenderedAs(new PlaceRequest("test"), "test");
-    }
+  @Test
+  public void parseNoParameterValue()
+  {
+    assertTokenIsParsedAs( "test", new PlaceRequest( "test" ) );
+  }
 
-    @Test
-    public void renderEmptyParameterValue() {
-    	
-    	assertPlaceIsRenderedAs(new PlaceRequest("test").with("Description", "").with("SomethingElse", "hello"), "test;Description=;SomethingElse=hello");
-    }
-    
-    @Test
-    public void parseParameterValue() {
+  @Test
+  public void parseEmptyParameterValue()
+  {
+    assertTokenIsParsedAs( "test;Description=;SomethingElse=hello",
+                           new PlaceRequest( "test" ).with( "Description", "" ).with( "SomethingElse", "hello" ) );
+  }
 
-    	assertTokenIsParsedAs("test;name=value", new PlaceRequest("test").with("name", "value"));
-    }
+  private void assertTokenIsParsedAs( String historyToken, PlaceRequest expectedPlaceRequest )
+  {
+    ParameterTokenFormatter formatter = new ParameterTokenFormatter();
+    PlaceRequest placeRequest = formatter.toPlaceRequest( historyToken );
+    assertEquals( "Token improperly parsed", expectedPlaceRequest, placeRequest );
+  }
 
-    @Test
-    public void parseNoParameterValue() {
-        
-    	assertTokenIsParsedAs("test", new PlaceRequest("test"));
-    }
-    
-    @Test
-    public void parseEmptyParameterValue() {
-    	
-    	assertTokenIsParsedAs("test;Description=;SomethingElse=hello", new PlaceRequest("test").with("Description", "").with("SomethingElse", "hello"));
-    }
-    
-    private void assertTokenIsParsedAs(String historyToken, PlaceRequest expectedPlaceRequest) {
-    	
-    	ParameterTokenFormatter formatter = new ParameterTokenFormatter();
-    	PlaceRequest placeRequest = formatter.toPlaceRequest(historyToken);
-    	
-    	assertEquals("Token improperly parsed", expectedPlaceRequest, placeRequest);
-    }
-
-    private void assertPlaceIsRenderedAs(PlaceRequest placeRequest, String expectedHistoryToken) {
-
-        ParameterTokenFormatter formatter = new ParameterTokenFormatter();
-
-        assertEquals("PlaceRequest improperly rendered", expectedHistoryToken, formatter.toHistoryToken(placeRequest));
-    }
+  private void assertPlaceIsRenderedAs( PlaceRequest placeRequest, String expectedHistoryToken )
+  {
+    ParameterTokenFormatter formatter = new ParameterTokenFormatter();
+    assertEquals( "PlaceRequest improperly rendered", expectedHistoryToken, formatter.toHistoryToken( placeRequest ) );
+  }
 
 }

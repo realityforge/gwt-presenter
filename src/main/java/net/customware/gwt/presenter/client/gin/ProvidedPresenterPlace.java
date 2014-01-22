@@ -27,52 +27,58 @@ import net.customware.gwt.presenter.client.place.PresenterPlace;
  *
  * @author David Peterson
  */
-public abstract class ProvidedPresenterPlace<T extends Presenter> extends PresenterPlace<T> {
-    private final Provider<T> presenter;
+public abstract class ProvidedPresenterPlace<T extends Presenter>
+  extends PresenterPlace<T>
+{
+  private final Provider<T> presenter;
 
-    public ProvidedPresenterPlace( Provider<T> presenter ) {
-        this.presenter = presenter;
-    }
+  public ProvidedPresenterPlace( Provider<T> presenter )
+  {
+    this.presenter = presenter;
+  }
 
-    @Override
-    public T getPresenter() {
-        return presenter.get();
-    }
+  @Override
+  public T getPresenter()
+  {
+    return presenter.get();
+  }
 
-    /**
-     * Override this method to handle input values from the request that should
-     * be passed to the presenter before being revealed. The default implementation
-     * does nothing. For example:
-     * <p/>
-     * <code>
-     * presenter.setId( request.getParam( "id" );
-     * </code>
-     *
-     * @param request   The request.
-     * @param presenter The presenter.
-     */
-    @Override
-    protected void preparePresenter( PlaceRequest request, T presenter ) {
-        // Do nothing
-    }
+  /**
+   * Override this method to handle input values from the request that should
+   * be passed to the presenter before being revealed. The default implementation
+   * does nothing. For example:
+   * <p/>
+   * <code>
+   * presenter.setId( request.getParam( "id" );
+   * </code>
+   *
+   * @param request   The request.
+   * @param presenter The presenter.
+   */
+  @Override
+  protected void preparePresenter( PlaceRequest request, T presenter )
+  {
+    // Do nothing
+  }
 
-    /**
-     * Prepares the request based on the current state of the presenter. If the
-     * presenter has state that you wish to be reflected in the History token,
-     * add it to the request before returning. Eg:
-     * <p/>
-     * <pre>
-     *   return request.with( "id", presenter.getId() );
-     * </pre>
-     * <p/>
-     * The default implementation simply returns the request unchanged.
-     *
-     * @param request   The current request.
-     * @param presenter The presenter.
-     * @return The updated request.
-     */
-    @Override
-    protected PlaceRequest prepareRequest( PlaceRequest request, T presenter ) {
-        return request;
-    }
+  /**
+   * Prepares the request based on the current state of the presenter. If the
+   * presenter has state that you wish to be reflected in the History token,
+   * add it to the request before returning. Eg:
+   * <p/>
+   * <pre>
+   *   return request.with( "id", presenter.getId() );
+   * </pre>
+   * <p/>
+   * The default implementation simply returns the request unchanged.
+   *
+   * @param request   The current request.
+   * @param presenter The presenter.
+   * @return The updated request.
+   */
+  @Override
+  protected PlaceRequest prepareRequest( PlaceRequest request, T presenter )
+  {
+    return request;
+  }
 }

@@ -7,36 +7,41 @@ import net.customware.gwt.presenter.client.Presenter;
  * that don't need to be prepared for display. These are mostly presenters which
  * don't have any initialisation parameters.
  *
+ * @param <T> The presenter class type.
  * @author David Peterson
- * @param <T>
- * The presenter class type.
  */
-public abstract class BasicPresenterPlace<T extends Presenter> extends PresenterPlace<T> {
-    private final T presenter;
+public abstract class BasicPresenterPlace<T extends Presenter>
+  extends PresenterPlace<T>
+{
+  private final T presenter;
 
-    public BasicPresenterPlace( T presenter ) {
-        this.presenter = presenter;
-    }
+  public BasicPresenterPlace( T presenter )
+  {
+    this.presenter = presenter;
+  }
 
-    @Override
-    public T getPresenter() {
-        return presenter;
-    }
+  @Override
+  public T getPresenter()
+  {
+    return presenter;
+  }
 
-    /**
-     * Does nothing by default.
-     */
-    @Override
-    protected void preparePresenter( PlaceRequest request, T presenter ) {
-        // Do nothing.
-    }
+  /**
+   * Does nothing by default.
+   */
+  @Override
+  protected void preparePresenter( PlaceRequest request, T presenter )
+  {
+    // Do nothing.
+  }
 
-    /**
-     * Returns the request unchanged.
-     */
-    @Override
-    protected PlaceRequest prepareRequest( PlaceRequest request, T presenter ) {
-        return request;
-    }
+  /**
+   * Returns the request unchanged.
+   */
+  @Override
+  protected PlaceRequest prepareRequest( PlaceRequest request, T presenter )
+  {
+    return request;
+  }
 
 }

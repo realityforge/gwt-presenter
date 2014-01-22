@@ -6,11 +6,15 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 @Singleton
-public class DefaultEventBus extends HandlerManager implements EventBus {
+public class DefaultEventBus
+  extends HandlerManager
+  implements EventBus
+{
 
-    @Inject
-    public DefaultEventBus() {
-        super( null );
-    }
+  @Inject
+  public DefaultEventBus()
+  {
+    super( null );
+  }
 
 }
