@@ -13,7 +13,7 @@ import com.google.web.bindery.event.shared.EventBus;
 public abstract class DeckPresenter
   extends WidgetContainerPresenter<DeckDisplay>
 {
-  public DeckPresenter( DeckDisplay display, EventBus eventBus, WidgetPresenter<?>... presenters )
+  public DeckPresenter( final DeckDisplay display, final EventBus eventBus, final WidgetPresenter<?>... presenters )
   {
     super( display, eventBus, presenters );
   }

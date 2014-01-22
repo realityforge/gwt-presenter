@@ -14,7 +14,7 @@ import net.customware.gwt.presenter.client.BasicPresenter;
 public abstract class WidgetPresenter<D extends WidgetDisplay>
   extends BasicPresenter<D>
 {
-  public WidgetPresenter( D display, EventBus eventBus )
+  public WidgetPresenter( final D display, final EventBus eventBus )
   {
     super( display, eventBus );
   }

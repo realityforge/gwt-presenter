@@ -18,8 +18,9 @@ public abstract class AbstractPresenterModule
    * @param display     The display type.
    * @param displayImpl The display implementation.
    */
-  protected <D extends Display> void bindPresenter( Class<? extends Presenter> presenter, Class<D> display,
-                                                    Class<? extends D> displayImpl )
+  protected final <D extends Display> void bindPresenter( final Class<? extends Presenter> presenter,
+                                                    final Class<D> display,
+                                                    final Class<? extends D> displayImpl )
   {
     bind( presenter ).in( Singleton.class );
     bindDisplay( display, displayImpl );
@@ -32,7 +33,7 @@ public abstract class AbstractPresenterModule
    * @param display     The display interface
    * @param displayImpl The display implementation
    */
-  protected <D extends Display> void bindDisplay( Class<D> display, Class<? extends D> displayImpl )
+  protected final <D extends Display> void bindDisplay( final Class<D> display, final Class<? extends D> displayImpl )
   {
     bind( display ).to( displayImpl );
   }
@@ -50,9 +51,8 @@ public abstract class AbstractPresenterModule
    * @param named The string to name with.
    * @return the binding builder.
    */
-  protected <T> GinLinkedBindingBuilder<T> bindNamed( Class<T> type, String named )
+  protected final <T> GinLinkedBindingBuilder<T> bindNamed( final Class<T> type, final String named )
   {
     return bind( type ).annotatedWith( named( named ) );
   }
-
 }

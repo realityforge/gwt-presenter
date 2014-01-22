@@ -20,16 +20,16 @@ public class PlaceRequest
   private final String name;
   private final Map<String, String> params;
 
-  public PlaceRequest( String name )
+  public PlaceRequest( final String name )
   {
     this.name = name;
     this.params = null;
   }
 
-  private PlaceRequest( PlaceRequest req, String name, String value )
+  private PlaceRequest( final PlaceRequest req, final String name, final String value )
   {
     this.name = req.name;
-    this.params = new HashMap<String, String>();
+    this.params = new HashMap<>();
     if ( req.params != null )
     {
       this.params.putAll( req.params );

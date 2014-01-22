@@ -7,27 +7,22 @@ public class DeckDisplay
   extends DeckPanel
   implements WidgetContainerDisplay
 {
-
-  public DeckDisplay()
+  public void addWidget( final Widget widget )
   {
+    add( widget );
   }
 
-  public void addWidget( Widget widget )
+  public void removeWidget( final Widget widget )
   {
-    this.add( widget );
+    remove( widget );
   }
 
-  public void removeWidget( Widget widget )
+  public void showWidget( final Widget widget )
   {
-    this.remove( widget );
-  }
-
-  public void showWidget( Widget widget )
-  {
-    int index = this.getWidgetIndex( widget );
+    final int index = this.getWidgetIndex( widget );
     if ( index >= 0 )
     {
-      this.showWidget( index );
+      showWidget( index );
     }
   }
 
