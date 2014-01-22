@@ -11,7 +11,6 @@ import net.customware.gwt.presenter.client.place.TokenFormatter;
 public class PresenterSetupModule
   extends AbstractGinModule
 {
-
   private final Class<? extends PlaceManager> placeManagerClass;
 
   private final Class<? extends TokenFormatter> tokenFormatterClass;
@@ -21,8 +20,8 @@ public class PresenterSetupModule
     this( placeManagerClass, ParameterTokenFormatter.class );
   }
 
-  public PresenterSetupModule( Class<? extends PlaceManager> placeManagerClass,
-                               Class<? extends TokenFormatter> tokenFormatterClass )
+  public PresenterSetupModule( final Class<? extends PlaceManager> placeManagerClass,
+                               final Class<? extends TokenFormatter> tokenFormatterClass )
   {
     this.placeManagerClass = placeManagerClass;
     this.tokenFormatterClass = tokenFormatterClass;
@@ -38,7 +37,7 @@ public class PresenterSetupModule
   }
 
   @Override
-  public boolean equals( Object object )
+  public boolean equals( final Object object )
   {
     return object instanceof PresenterSetupModule;
   }
