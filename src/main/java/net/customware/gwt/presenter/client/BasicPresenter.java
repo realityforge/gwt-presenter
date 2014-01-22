@@ -106,7 +106,7 @@ public abstract class BasicPresenter<D extends Display>
    */
   protected void firePresenterChangedEvent()
   {
-    PresenterChangedEvent.fire( eventBus, this );
+    eventBus.fireEvent( new PresenterChangedEvent( this ) );
   }
 
   /**
@@ -119,7 +119,7 @@ public abstract class BasicPresenter<D extends Display>
    */
   protected void firePresenterRevealedEvent( boolean originator )
   {
-    PresenterRevealedEvent.fire( eventBus, this, originator );
+    eventBus.fireEvent( new PresenterRevealedEvent( this, originator ) );
   }
 
   /**

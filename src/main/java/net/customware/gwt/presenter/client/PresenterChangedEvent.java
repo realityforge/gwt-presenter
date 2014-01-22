@@ -1,27 +1,28 @@
 package net.customware.gwt.presenter.client;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.web.bindery.event.shared.EventBus;
+import net.customware.gwt.presenter.client.PresenterChangedEvent.Handler;
 
 public class PresenterChangedEvent
-  extends GwtEvent<PresenterChangedHandler>
+  extends GwtEvent<Handler>
 {
+  public static interface Handler
+    extends EventHandler
+  {
+    void onPresenterChanged( PresenterChangedEvent event );
+  }
 
-  private static final Type<PresenterChangedHandler> TYPE = new Type<PresenterChangedHandler>();
+  private static final Type<Handler> TYPE = new Type<>();
 
-  public static Type<PresenterChangedHandler> getType()
+  public static Type<Handler> getType()
   {
     return TYPE;
   }
 
-  public static void fire( EventBus eventBus, Presenter presenter )
-  {
-    eventBus.fireEvent( new PresenterChangedEvent( presenter ) );
-  }
-
   private final Presenter presenter;
 
-  public PresenterChangedEvent( Presenter presenter )
+  public PresenterChangedEvent( final Presenter presenter )
   {
     this.presenter = presenter;
   }
@@ -32,14 +33,15 @@ public class PresenterChangedEvent
   }
 
   @Override
-  protected void dispatch( PresenterChangedHandler handler )
+  protected void dispatch( final Handler handler )
   {
     handler.onPresenterChanged( this );
   }
 
   @Override
-  public com.google.gwt.event.shared.GwtEvent.Type<PresenterChangedHandler> getAssociatedType()
+  public Type<Handler> getAssociatedType()
   {
-    return getType();
+    return TYPE;
   }
+
 }

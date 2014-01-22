@@ -1,20 +1,28 @@
 package net.customware.gwt.presenter.client.place;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.web.bindery.event.shared.EventBus;
+import net.customware.gwt.presenter.client.place.PlaceRequestEvent.Handler;
 
 public class PlaceRequestEvent
-  extends GwtEvent<PlaceRequestHandler>
+  extends GwtEvent<Handler>
 {
-
-  private static Type<PlaceRequestHandler> TYPE;
-
-  public static Type<PlaceRequestHandler> getType()
+  public static interface Handler
+    extends EventHandler
   {
-    if ( TYPE == null )
-    {
-      TYPE = new Type<PlaceRequestHandler>();
-    }
+    /**
+     * Called when something has requested a new place. Should be implemented by
+     * instances which can show the place.
+     *
+     * @param event The event.
+     */
+    void onPlaceRequest( PlaceRequestEvent event );
+  }
+
+  private static final Type<Handler> TYPE = new Type<>();
+
+  public static Type<Handler> getType()
+  {
     return TYPE;
   }
 
@@ -22,27 +30,27 @@ public class PlaceRequestEvent
 
   private final boolean fromHistory;
 
-  public PlaceRequestEvent( PlaceRequest request )
+  public PlaceRequestEvent( final PlaceRequest request )
   {
     this( request, false );
   }
 
-  PlaceRequestEvent( PlaceRequest request, boolean fromHistory )
+  PlaceRequestEvent( final PlaceRequest request, final boolean fromHistory )
   {
     this.request = request;
     this.fromHistory = fromHistory;
   }
 
   @Override
-  protected void dispatch( PlaceRequestHandler handler )
+  protected void dispatch( final Handler handler )
   {
     handler.onPlaceRequest( this );
   }
 
   @Override
-  public Type<PlaceRequestHandler> getAssociatedType()
+  public Type<Handler> getAssociatedType()
   {
-    return getType();
+    return PlaceRequestEvent.getType();
   }
 
   public PlaceRequest getRequest()
@@ -53,15 +61,5 @@ public class PlaceRequestEvent
   boolean isFromHistory()
   {
     return fromHistory;
-  }
-
-  public static void fire( EventBus eventBus, PlaceRequest request )
-  {
-    fire( eventBus, request, false );
-  }
-
-  static void fire( EventBus eventBus, PlaceRequest request, boolean fromHistory )
-  {
-    eventBus.fireEvent( new PlaceRequestEvent( request, fromHistory ) );
   }
 }

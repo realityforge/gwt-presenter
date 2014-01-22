@@ -1,7 +1,8 @@
 package net.customware.gwt.presenter.client.place;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.web.bindery.event.shared.EventBus;
+import net.customware.gwt.presenter.client.place.PlaceChangedEvent.Handler;
 
 /**
  * This event is triggered when any {@link Place} has changed state. It may or
@@ -10,42 +11,44 @@ import com.google.web.bindery.event.shared.EventBus;
  * @author David Peterson
  */
 public class PlaceChangedEvent
-  extends GwtEvent<PlaceChangedHandler>
+  extends GwtEvent<Handler>
 {
-
-  private static Type<PlaceChangedHandler> TYPE;
-
-  public static Type<PlaceChangedHandler> getType()
+  public static interface Handler
+    extends EventHandler
   {
-    if ( TYPE == null )
-    {
-      TYPE = new Type<PlaceChangedHandler>();
-    }
-    return TYPE;
+    /**
+     * Called after the current place has already changed. Allows handlers to
+     * update any internal tracking, etc.
+     *
+     * @param event The event.
+     */
+    void onPlaceChanged( PlaceChangedEvent event );
   }
 
-  public static void fire( EventBus eventBus, Place place )
+  private static final Type<Handler> TYPE = new Type<>();
+
+  public static Type<Handler> getType()
   {
-    eventBus.fireEvent( new PlaceChangedEvent( place ) );
+    return TYPE;
   }
 
   private final Place place;
 
-  public PlaceChangedEvent( Place place )
+  public PlaceChangedEvent( final Place place )
   {
     this.place = place;
   }
 
   @Override
-  protected void dispatch( PlaceChangedHandler handler )
+  protected void dispatch( final Handler handler )
   {
     handler.onPlaceChanged( this );
   }
 
   @Override
-  public com.google.gwt.event.shared.GwtEvent.Type<PlaceChangedHandler> getAssociatedType()
+  public Type<Handler> getAssociatedType()
   {
-    return getType();
+    return TYPE;
   }
 
   public Place getPlace()

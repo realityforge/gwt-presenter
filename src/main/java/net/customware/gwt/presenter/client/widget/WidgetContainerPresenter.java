@@ -2,8 +2,8 @@ package net.customware.gwt.presenter.client.widget;
 
 import com.google.web.bindery.event.shared.EventBus;
 import java.util.List;
+import net.customware.gwt.presenter.client.PresenterRevealedEvent.Handler;
 import net.customware.gwt.presenter.client.PresenterRevealedEvent;
-import net.customware.gwt.presenter.client.PresenterRevealedHandler;
 
 /**
  * This class provides support for widgets that contain other widgets. It will
@@ -78,7 +78,7 @@ public abstract class WidgetContainerPresenter<T extends WidgetContainerDisplay>
     }
 
     // Handle revelation events from children
-    registerHandler( eventBus.addHandler( PresenterRevealedEvent.getType(), new PresenterRevealedHandler()
+    registerHandler( eventBus.addHandler( PresenterRevealedEvent.getType(), new Handler()
     {
       public void onPresenterRevealed( PresenterRevealedEvent event )
       {

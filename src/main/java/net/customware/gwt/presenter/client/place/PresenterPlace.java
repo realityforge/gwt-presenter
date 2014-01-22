@@ -4,9 +4,8 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import net.customware.gwt.presenter.client.Presenter;
 import net.customware.gwt.presenter.client.PresenterChangedEvent;
-import net.customware.gwt.presenter.client.PresenterChangedHandler;
+import net.customware.gwt.presenter.client.PresenterChangedEvent.Handler;
 import net.customware.gwt.presenter.client.PresenterRevealedEvent;
-import net.customware.gwt.presenter.client.PresenterRevealedHandler;
 import net.customware.gwt.presenter.client.widget.WidgetPresenter;
 
 /**
@@ -122,7 +121,7 @@ public abstract class PresenterPlace<T extends Presenter>
   {
     super.addHandlers( eventBus );
 
-    presenterChangedRegistration = eventBus.addHandler( PresenterChangedEvent.getType(), new PresenterChangedHandler()
+    presenterChangedRegistration = eventBus.addHandler( PresenterChangedEvent.getType(), new Handler()
     {
       /**
        * Listens for {@link net.customware.gwt.presenter.client.PresenterChangedEvent}s that match the place's
@@ -137,19 +136,19 @@ public abstract class PresenterPlace<T extends Presenter>
       {
         if ( PresenterPlace.this.getPresenter() == event.getPresenter() )
         {
-          PlaceChangedEvent.fire( eventBus, PresenterPlace.this );
+          eventBus.fireEvent( new PlaceChangedEvent( PresenterPlace.this ) );
         }
       }
     } );
 
     presenterRevealedRegistration =
-      eventBus.addHandler( PresenterRevealedEvent.getType(), new PresenterRevealedHandler()
+      eventBus.addHandler( PresenterRevealedEvent.getType(), new PresenterRevealedEvent.Handler()
       {
         public void onPresenterRevealed( PresenterRevealedEvent event )
         {
           if ( event.isOriginator() && PresenterPlace.this.getPresenter() == event.getPresenter() )
           {
-            PlaceRevealedEvent.fire( eventBus, PresenterPlace.this );
+            eventBus.fireEvent( new PlaceRevealedEvent( PresenterPlace.this ) );
           }
         }
       } );

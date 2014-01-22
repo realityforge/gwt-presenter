@@ -1,15 +1,26 @@
 package net.customware.gwt.presenter.client.place;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.google.web.bindery.event.shared.EventBus;
+import net.customware.gwt.presenter.client.place.PlaceRevealedEvent.Handler;
 
 public class PlaceRevealedEvent
-  extends GwtEvent<PlaceRevealedHandler>
+  extends GwtEvent<Handler>
 {
+  public static interface Handler
+    extends EventHandler
+  {
+    /**
+     * Called when a {@link net.customware.gwt.presenter.client.place.Place} has been revealed to the user.
+     *
+     * @param event The even.
+     */
+    void onPlaceRevealed( PlaceRevealedEvent event );
+  }
 
-  private static GwtEvent.Type<PlaceRevealedHandler> TYPE = new GwtEvent.Type<PlaceRevealedHandler>();
+  private static GwtEvent.Type<Handler> TYPE = new GwtEvent.Type<>();
 
-  public static GwtEvent.Type<PlaceRevealedHandler> getType()
+  public static GwtEvent.Type<Handler> getType()
   {
     return TYPE;
   }
@@ -32,25 +43,14 @@ public class PlaceRevealedEvent
   }
 
   @Override
-  protected void dispatch( PlaceRevealedHandler handler )
+  protected void dispatch( Handler handler )
   {
     handler.onPlaceRevealed( this );
   }
 
   @Override
-  public GwtEvent.Type<PlaceRevealedHandler> getAssociatedType()
+  public GwtEvent.Type<Handler> getAssociatedType()
   {
     return TYPE;
-  }
-
-  /**
-   * Call this method to fire place revealed events.
-   *
-   * @param eventBus The eventBus.
-   * @param place    The place.
-   */
-  public static void fire( EventBus eventBus, Place place )
-  {
-    eventBus.fireEvent( new PlaceRevealedEvent( place ) );
   }
 }

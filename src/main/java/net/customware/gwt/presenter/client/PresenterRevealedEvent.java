@@ -1,5 +1,6 @@
 package net.customware.gwt.presenter.client;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.web.bindery.event.shared.EventBus;
 
@@ -13,37 +14,22 @@ import com.google.web.bindery.event.shared.EventBus;
  * @author David Peterson
  */
 public class PresenterRevealedEvent
-  extends GwtEvent<PresenterRevealedHandler>
+  extends GwtEvent<PresenterRevealedEvent.Handler>
 {
-  private static final GwtEvent.Type<PresenterRevealedHandler> TYPE = new GwtEvent.Type<PresenterRevealedHandler>();
+  /**
+   * Handles a presenter revelation event.
+   */
+  public static interface Handler
+    extends EventHandler
+  {
+    void onPresenterRevealed( PresenterRevealedEvent event );
+  }
 
-  public static GwtEvent.Type<PresenterRevealedHandler> getType()
+  private static final GwtEvent.Type<Handler> TYPE = new GwtEvent.Type<Handler>();
+
+  public static GwtEvent.Type<Handler> getType()
   {
     return TYPE;
-  }
-
-  /**
-   * Fires a {@link PresenterRevealedEvent} into the {@link EventBus}, specifying that it
-   * was the originator.
-   *
-   * @param eventBus  The event bus.
-   * @param presenter The presenter.
-   */
-  public static void fire( EventBus eventBus, Presenter presenter )
-  {
-    fire( eventBus, presenter, true );
-  }
-
-  /**
-   * Fires the event into the provided {@link EventBus}.
-   *
-   * @param eventBus   The event bus.
-   * @param presenter  The presenter.
-   * @param originator If <code>true</code>, this presenter was the originator for the request.
-   */
-  public static void fire( EventBus eventBus, Presenter presenter, boolean originator )
-  {
-    eventBus.fireEvent( new PresenterRevealedEvent( presenter, originator ) );
   }
 
   private final Presenter presenter;
@@ -55,7 +41,7 @@ public class PresenterRevealedEvent
    *
    * @param presenter The presenter.
    */
-  public PresenterRevealedEvent( Presenter presenter )
+  public PresenterRevealedEvent( final Presenter presenter )
   {
     this( presenter, true );
   }
@@ -68,7 +54,7 @@ public class PresenterRevealedEvent
    * @param originator If <code>true</code>, the presenter is the originator of
    *                   the revelation chain.
    */
-  public PresenterRevealedEvent( Presenter presenter, boolean originator )
+  public PresenterRevealedEvent( final Presenter presenter, final boolean originator )
   {
     this.presenter = presenter;
     this.originator = originator;
@@ -92,14 +78,14 @@ public class PresenterRevealedEvent
   }
 
   @Override
-  protected void dispatch( PresenterRevealedHandler handler )
+  protected void dispatch( final Handler handler )
   {
     handler.onPresenterRevealed( this );
   }
 
   @Override
-  public GwtEvent.Type<PresenterRevealedHandler> getAssociatedType()
+  public GwtEvent.Type<Handler> getAssociatedType()
   {
-    return getType();
+    return TYPE;
   }
 }

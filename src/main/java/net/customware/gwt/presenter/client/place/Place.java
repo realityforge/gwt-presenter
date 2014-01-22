@@ -2,6 +2,7 @@ package net.customware.gwt.presenter.client.place;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
+import net.customware.gwt.presenter.client.place.PlaceRequestEvent.Handler;
 
 /**
  * A place represents a particular 'bookmark' or location inside the
@@ -114,7 +115,7 @@ public abstract class Place
    */
   public void addHandlers( final EventBus eventBus )
   {
-    placeRequestRegistration = eventBus.addHandler( PlaceRequestEvent.getType(), new PlaceRequestHandler()
+    placeRequestRegistration = eventBus.addHandler( PlaceRequestEvent.getType(), new Handler()
     {
       public void onPlaceRequest( PlaceRequestEvent event )
       {

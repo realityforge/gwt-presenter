@@ -45,7 +45,7 @@ public abstract class DefaultPlaceManager
     {
       try
       {
-        PlaceRequestEvent.fire( eventBus, tokenFormatter.toPlaceRequest( event.getValue() ), true );
+        eventBus.fireEvent( new PlaceRequestEvent( tokenFormatter.toPlaceRequest( event.getValue() ), true ) );
       }
       catch ( TokenFormatException e )
       {
