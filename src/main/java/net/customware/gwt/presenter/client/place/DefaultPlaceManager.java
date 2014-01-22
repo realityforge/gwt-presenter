@@ -6,15 +6,15 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.History;
 import com.google.web.bindery.event.shared.EventBus;
 import java.util.HashSet;
+import net.customware.gwt.presenter.client.place.PlaceChangedEvent.Handler;
 
 public abstract class DefaultPlaceManager
   implements PlaceManager
 {
   private class PlaceEventHandler
-    implements ValueChangeHandler<String>, PlaceRevealedHandler,
-               PlaceChangedHandler
+    implements ValueChangeHandler<String>, PlaceRequestEvent.Handler,
+               Handler
   {
-
     public void onPlaceRevealed( PlaceRevealedEvent event )
     {
       updateHistory( event.getPlace() );
