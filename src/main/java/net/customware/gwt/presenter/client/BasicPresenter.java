@@ -2,12 +2,12 @@ package net.customware.gwt.presenter.client;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasicPresenter<D extends Display>
   implements Presenter
 {
-
   /**
    * The display for the presenter.
    */
@@ -18,7 +18,7 @@ public abstract class BasicPresenter<D extends Display>
    */
   protected final EventBus eventBus;
 
-  private List<HandlerRegistration> handlerRegistrations = new java.util.ArrayList<HandlerRegistration>();
+  private final List<HandlerRegistration> handlerRegistrations = new ArrayList<>();
 
   private boolean bound = false;
 
