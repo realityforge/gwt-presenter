@@ -3,9 +3,9 @@ package net.customware.gwt.presenter.client.gin;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.inject.client.binder.GinLinkedBindingBuilder;
 import com.google.inject.Singleton;
+import com.google.inject.name.Names;
 import net.customware.gwt.presenter.client.Display;
 import net.customware.gwt.presenter.client.Presenter;
-import static com.google.inject.name.Names.named;
 
 public abstract class AbstractPresenterModule
   extends AbstractGinModule
@@ -53,6 +53,6 @@ public abstract class AbstractPresenterModule
    */
   protected final <T> GinLinkedBindingBuilder<T> bindNamed( final Class<T> type, final String named )
   {
-    return bind( type ).annotatedWith( named( named ) );
+    return bind( type ).annotatedWith( Names.named( named ) );
   }
 }
