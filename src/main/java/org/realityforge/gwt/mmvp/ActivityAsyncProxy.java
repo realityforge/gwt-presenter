@@ -21,7 +21,7 @@ public final class ActivityAsyncProxy<T extends Activity>
   private boolean _canceled;
   private Place _place;
 
-  @SuppressWarnings( { "ConstantConditions" } )
+  @SuppressWarnings( "ConstantConditions" )
   @Inject
   public ActivityAsyncProxy( @Nonnull final AsyncProvider<T> provider )
   {
@@ -93,7 +93,7 @@ public final class ActivityAsyncProxy<T extends Activity>
     {
       _provider.get( new AsyncCallback<T>()
       {
-        @SuppressWarnings( { "ConstantConditions" } )
+        @SuppressWarnings( "ConstantConditions" )
         @Override
         public void onFailure( final Throwable caught )
         {
