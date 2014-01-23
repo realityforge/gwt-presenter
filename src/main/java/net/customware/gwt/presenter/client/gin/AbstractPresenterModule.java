@@ -19,8 +19,8 @@ public abstract class AbstractPresenterModule
    * @param displayImpl The display implementation.
    */
   protected final <D extends Display> void bindPresenter( final Class<? extends Presenter> presenter,
-                                                    final Class<D> display,
-                                                    final Class<? extends D> displayImpl )
+                                                          final Class<D> display,
+                                                          final Class<? extends D> displayImpl )
   {
     bind( presenter ).in( Singleton.class );
     bindDisplay( display, displayImpl );
