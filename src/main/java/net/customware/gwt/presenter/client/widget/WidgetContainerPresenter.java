@@ -2,8 +2,8 @@ package net.customware.gwt.presenter.client.widget;
 
 import com.google.web.bindery.event.shared.EventBus;
 import java.util.List;
-import net.customware.gwt.presenter.client.PresenterRevealedEvent.Handler;
 import net.customware.gwt.presenter.client.PresenterRevealedEvent;
+import net.customware.gwt.presenter.client.PresenterRevealedEvent.Handler;
 
 /**
  * This class provides support for widgets that contain other widgets. It will
