@@ -19,7 +19,11 @@ define 'gwt-presenter' do
   compile.with :javax_annotation,
                :gwt_user,
                :gwt_gin,
-               :javax_inject
+               :javax_inject,
+               :google_guice,
+               :google_guice_assistedinject,
+               :aopalliance
+
 
   package(:jar).include("#{_(:source, :main, :java)}/*")
   package(:sources)
