@@ -9,7 +9,7 @@ define 'gwt-presenter' do
 
   project.version = ENV['PRODUCT_VERSION'] if ENV['PRODUCT_VERSION']
 
-  pom.add_apache2_license
+  pom.add_apache_v2_license
   pom.add_github_project('realityforge/gwt-mmvp')
   pom.add_developer('realityforge', 'Peter Donald')
   pom.add_developer('randomeizer', 'David Peterson', 'david@randombits.org', ['Original Developer'])
